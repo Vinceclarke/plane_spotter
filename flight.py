@@ -53,12 +53,11 @@ try:
   
   if 'acList' in data:
    data1= data['acList'][0]
-  else:
-   print 'There are no planes nearby, try later'
-  if 'Call' in data1:
-   print data1['Call'] 
-  if 'Mdl' in data1:
-   print data1['Mdl']
+  
+  if 'Call' in data1 and 'Mdl' in data1:
+   call= data1['Call']
+   model=data1['Mdl']
+  
   if 'From' in data1:
    print 'From: ' + data1['From']
   if 'To' in data1:
