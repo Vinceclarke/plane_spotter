@@ -46,6 +46,11 @@ try:
  try:
   url2="https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat="+ x0 + "&lng=" + x1 + "&fDstL=0&fDstU=5"
   data = requests.get(url2).json()
+  
+  if not data['acList']:
+   print 'There are no planes nearby, try later'
+   exit()
+  
   if 'acList' in data:
    data1= data['acList'][0]
   else:
