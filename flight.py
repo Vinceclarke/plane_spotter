@@ -46,31 +46,28 @@ try:
  try:
   url2="https://public-api.adsbexchange.com/VirtualRadar/AircraftList.json?lat="+ x0 + "&lng=" + x1 + "&fDstL=0&fDstU=5"
   data = requests.get(url2).json()
+  
+  if not data['acList']:
+   print 'There are no planes nearby, try later'
+   exit()
+  
   if 'acList' in data:
    data1= data['acList'][0]
   else:
-   print 'There are no planes nearby, try later'
-
-  #you should get rid of this
-  
-  #if 'Call' in data1:
-  # print data1['Call'] 
-  #if 'Mdl' in data1:
-  #print data1['Mdl']
-   
-  #This is more elegant
+   print 'There are no planes nearby, try later
   
    if 'Call' in data1 and 'Mdl' in data1:
     call= data1['Call']
     model=data1['Mdl']
     print call, model
    
-  #And why don't you record all in a file txt or cvs file?
+  
+  #Record data in file txt
    info= call +' ' + model + ' '
    f = open('flightmodel.txt', 'a')
    f.write(info + "\n")
-   f.close()
-   
+   f.close()  
+ 
   if 'From' in data1:
    print 'From: ' + data1['From']
   if 'To' in data1:
